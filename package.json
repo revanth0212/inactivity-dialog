@@ -9,10 +9,12 @@
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-scripts": "1.1.1",
-    "render-if": "^0.1.1",
-    "react-tap-event-plugin": "2.0.1"
+    "react-tap-event-plugin": "2.0.1",
+    "render-if": "^0.1.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -25,6 +27,7 @@
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-html": "1.5.1",
     "eslint-plugin-react": "^7.5.1",
+    "gh-pages": "^1.1.0",
     "prettier-eslint-cli": "^4.7.0",
     "prop-types": "^15.5.8"
   }
