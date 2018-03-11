@@ -39,16 +39,24 @@ or
 
 |Name|Type|Default Value|Description|
 |--|--|--|--|
-| autoUnlockTimeout | number | 60 | Number of Seconds it takes for the timer to Auto OK / Cancel |
-| timeout | number | 18000 | Number of milliseconds of inactivity it takes for the dialog to come on to the screen |
-| beforeInactivityDialogOpen | function |  | Function that will be called before the Inactivity Dialog shows up on the UI |
-| beforeInactivityDialogClose | function |  | Function that will be called before the Inactivity Dialog moves away from the UI |
-| handleSubmit | function | | Function that will be called when the submit button is clicked (Right side button) |
-| handleCancel | function | | Function that will be called when the cancel button is clicked (Left side button) |
-| cancelButtonText | string | 'Cancel' | Text that needs to be shows on the cancel button |
-| submitButtonText | string | 'Submit' | Text that needs to be shown on the submit button |
-| userQuestion | string | 'Are you sure you want to submit?' | User question / message that needs to be shown on the dialog |
-| successfulMessage| string | 'Submitted sucessfully' | Successful message that needs to be shown on the dialog when the user clicks submit |
+| autoUnlockTimeout | number | 60 | Number of Seconds it takes for the timer to Auto OK / Cancel. |
+| timeout | number | 18000 | Number of milliseconds of inactivity it takes for the dialog to come on to the screen. |
+| beforeInactivityDialogOpen | function | () => {} | Function that will be called before the Inactivity Dialog shows up on the UI. |
+| beforeInactivityDialogClose | function | () => {} | Function that will be called before the Inactivity Dialog moves away from the UI. |
+| handleSubmit | function |() => {} | Function that will be called when the submit button is clicked (Right side button). |
+| handleCancel | function | () => {}| Function that will be called when the cancel button is clicked (Left side button). |
+| cancelButtonText | string | 'Cancel' | Text that needs to be shows on the cancel button. |
+| submitButtonText | string | 'Submit' | Text that needs to be shown on the submit button. |
+| userQuestion | string | 'Are you sure you want to submit?' | User question / message that needs to be shown on the dialog. |
+| successfulMessage| string | 'Submitted sucessfully' | Successful message that needs to be shown on the dialog when the user clicks submit. |
+|SuccessFulIcon | node | < LockOpen  color="green"  /> | The Icon that needs to be shown when the submit button is either clicked by user or auto clicked due to timer expiry. The default icon is a material ui icon taken from https://material.io/icons/.
+|UserActionWaitingIcon| node | < LockOutline color="#0D5DB8"  /> | The Icon that needs to be shown when the dialog is opened and waiting for user action. The default icon is a material ui icon taken from https://material.io/icons/.
+| buttonLabelStyle | object | { color: '#0D5DB8' } | CSS styling that will be applied on the Cancel and Submit button labels. |
+| userActionWaitingColor | string | '#0D5DB8' | Color that will be used for the user question and timeout indicator. This will take precedence over color if provided in userQuestionStyle prop. |
+| successfulActionColor | string | 'green' | Color that will be used for the successful message.  This will take precedence over color if provided in successfulMessageStyle prop.|
+|userQuestionStyle|object|{}|Styling that will be applied on the User question component.|
+|successfulMessageStyle|object|{}|Styling that will be applied on the Successful message component.|
+
 
 # Example
 
