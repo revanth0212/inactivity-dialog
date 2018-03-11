@@ -45,10 +45,10 @@ or
 | beforeInactivityDialogClose | function |  | Function that will be called before the Inactivity Dialog moves away from the UI |
 | handleSubmit | function | | Function that will be called when the submit button is clicked (Right side button) |
 | handleCancel | function | | Function that will be called when the cancel button is clicked (Left side button) |
-| cancelButtonText | string | | Text that needs to be shows on the cancel button |
-| submitButtonText | string | | Text that needs to be shown on the submit button |
-| userQuestion | string | | User question / message that needs to be shown on the dialog |
-| successfulMessage| string |  | Successful message that needs to be shown on the dialog when the user clicks submit |
+| cancelButtonText | string | 'Cancel' | Text that needs to be shows on the cancel button |
+| submitButtonText | string | 'Submit' | Text that needs to be shown on the submit button |
+| userQuestion | string | 'Are you sure you want to submit?' | User question / message that needs to be shown on the dialog |
+| successfulMessage| string | 'Submitted sucessfully' | Successful message that needs to be shown on the dialog when the user clicks submit |
 
 # Example
 

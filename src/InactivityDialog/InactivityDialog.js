@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { func, number, string } from 'prop-types'
 import InactivityDialogView from './InactivityDialog.view'
 
+const DEFAULT_TIMEOUT = 18000 // 3 minutes of inactivity before the dialog opens up
+
 const DEFAULT_AUTO_OK_TIMEOUT = 60 // User gets 60 seconds before the lot auto unlocks.
 
 const DEFAULT_TIMER_CHANGE_TIMEOUT = 1000 // 1000ms = 1sec. Timer value changes every 1 second.
@@ -23,9 +25,16 @@ class InactivityDialog extends Component {
   }
 
   static defaultProps = {
+    timeout: DEFAULT_TIMEOUT,
     autoUnlockTimeout: DEFAULT_AUTO_OK_TIMEOUT,
     beforeInactivityDialogClose: () => {},
     beforeInactivityDialogOpen: () => {},
+    handleSubmit: () => {},
+    handleCancel: () => {},
+    cancelButtonText: 'Cancel',
+    submitButtonText: 'Submit',
+    userQuestion: 'Are you sure you want to submit?',
+    successfulMessage: 'Submitted sucessfully',
   }
 
   constructor(props) {

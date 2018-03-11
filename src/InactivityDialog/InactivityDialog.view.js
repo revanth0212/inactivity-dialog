@@ -75,7 +75,7 @@ const InactivityDialogViewPropTypes = {
 }
 
 const InactivityDialogView = ({
-  value = 0, open = false, handleCancel, handleSubmit, min = 0, max = 100, cancelButtonText = 'No Stay', submitButtonText = 'Yes Leave', userQuestion = '', successfulMessage = '',
+  value = 0, open = false, handleCancel, handleSubmit, min = 0, max = 100, cancelButtonText, submitButtonText, userQuestion, successfulMessage,
 }) => {
   const icon = value ? <LockOutline /> : <LockOpen />
   const actions = [
