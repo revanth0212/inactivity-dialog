@@ -4,7 +4,7 @@ import LockOpen from 'material-ui/svg-icons/action/lock-open'
 import LockOutline from 'material-ui/svg-icons/action/lock-outline'
 import InactivityDialogView from './InactivityDialog.view'
 
-const DEFAULT_TIMEOUT = 18000 // 3 minutes of inactivity before the dialog opens up
+const DEFAULT_TIMEOUT = 3 * 60 * 1000 // 3 minutes of inactivity before the dialog opens up
 
 const DEFAULT_AUTO_OK_TIMEOUT = 60 // User gets 60 seconds before the lot auto unlocks.
 
@@ -82,7 +82,7 @@ class InactivityDialog extends Component {
   }
 
   restartTimer = () => {
-    if (this.state.timerValue) {
+    if (!this.state.open) {
       this.timerId && window.clearTimeout(this.timerId)
       this.timerId = window.setTimeout(this.openInactivityDialog, this.props.timeout)
     }
