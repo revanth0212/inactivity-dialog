@@ -40,7 +40,7 @@ or
 |Name|Type|Default Value|Description|
 |--|--|--|--|
 | autoUnlockTimeout | number | 60 | Number of Seconds it takes for the timer to Auto OK / Cancel. |
-| timeout | number | 18000 | Number of milliseconds of inactivity it takes for the dialog to come on to the screen. |
+| timeout | number | 180000 | Number of milliseconds of inactivity it takes for the dialog to come on to the screen. |
 | beforeInactivityDialogOpen | function | () => {} | Function that will be called before the Inactivity Dialog shows up on the UI. |
 | beforeInactivityDialogClose | function | () => {} | Function that will be called before the Inactivity Dialog moves away from the UI. |
 | handleSubmit | function |() => {} | Function that will be called when the submit button is clicked (Right side button). |
@@ -72,7 +72,7 @@ or
 		    
 		    handleCancel={this.handleInactivityTimeoutCancel}
 		    
-		    timeout={3000}
+		    timeout={10000}
 		    
 		    autoUnlockTimeout={60}
 		    
