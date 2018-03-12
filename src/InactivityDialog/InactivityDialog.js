@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { func, number, string } from 'prop-types'
+import { func, number, string, node, object } from 'prop-types'
+import LockOpen from 'material-ui/svg-icons/action/lock-open'
+import LockOutline from 'material-ui/svg-icons/action/lock-outline'
 import InactivityDialogView from './InactivityDialog.view'
+
+const DEFAULT_TIMEOUT = 3 * 60 * 1000 // 3 minutes of inactivity before the dialog opens up
 
 const DEFAULT_AUTO_OK_TIMEOUT = 60 // User gets 60 seconds before the lot auto unlocks.
 
@@ -20,12 +24,33 @@ class InactivityDialog extends Component {
     submitButtonText: string,
     userQuestion: string,
     successfulMessage: string,
+    SuccessfulIcon: node,
+    UserActionWaitingIcon: node,
+    buttonLabelStyle: object,
+    userActionWaitingColor: string,
+    successfulActionColor: string,
+    userQuestionStyle: object,
+    successfulMessageStyle: object,
   }
 
   static defaultProps = {
+    timeout: DEFAULT_TIMEOUT,
     autoUnlockTimeout: DEFAULT_AUTO_OK_TIMEOUT,
     beforeInactivityDialogClose: () => {},
     beforeInactivityDialogOpen: () => {},
+    handleSubmit: () => {},
+    handleCancel: () => {},
+    cancelButtonText: 'Cancel',
+    submitButtonText: 'Submit',
+    userQuestion: 'Are you sure you want to submit?',
+    successfulMessage: 'Submitted sucessfully',
+    SuccessfulIcon: <LockOpen color="#0D5DB8" />,
+    UserActionWaitingIcon: <LockOutline color="#0D5DB8" />,
+    buttonLabelStyle: { color: '#0D5DB8' },
+    userActionWaitingColor: '#0D5DB8',
+    successfulActionColor: 'green',
+    userQuestionStyle: {},
+    successfulMessageStyle: {},
   }
 
   constructor(props) {
@@ -57,7 +82,7 @@ class InactivityDialog extends Component {
   }
 
   restartTimer = () => {
-    if (this.state.timerValue) {
+    if (!this.state.open) {
       this.timerId && window.clearTimeout(this.timerId)
       this.timerId = window.setTimeout(this.openInactivityDialog, this.props.timeout)
     }
@@ -122,6 +147,13 @@ class InactivityDialog extends Component {
         submitButtonText={this.props.submitButtonText}
         userQuestion={this.props.userQuestion}
         successfulMessage={this.props.successfulMessage}
+        SuccessfulIcon={this.props.SuccessfulIcon}
+        UserActionWaitingIcon={this.props.UserActionWaitingIcon}
+        buttonLabelStyle={this.props.buttonLabelStyle}
+        userActionWaitingColor={this.props.userActionWaitingColor}
+        successfulActionColor={this.props.successfulActionColor}
+        userQuestionStyle={this.props.userQuestionStyle}
+        successfulMessageStyle={this.props.successfulMessageStyle}
       />
     )
   }
