@@ -1,7 +1,13 @@
 {
   "name": "inactivity-dialog",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://revanth0212.github.io/inactivity-dialog",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/revanth0212/inactivity-dialog"
+  },
   "dependencies": {
     "material-ui": "0.15.4",
     "ramda": "0.25.0",
@@ -13,18 +19,32 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/InactivityDialog --out-dir dist --copy-files",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -b gh-pages -d dist"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.18.2",
     "eslint-config-airbnb-easy": "^1.0.10",
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-html": "1.5.1",
     "eslint-plugin-react": "^7.5.1",
     "prettier-eslint-cli": "^4.7.0",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "gh-pages": "^1.1.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-2"
+    ]
   }
 }
