@@ -19,10 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/InactivityDialog --out-dir dist --copy-files",
+    "build": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/InactivityDialog --out-dir dist --copy-files ",
+    "build:mac": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/InactivityDialog --out-dir dist --copy-files",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -b gh-pages -d dist"
+    "deploy": "rm -rf build && mkdir build && react-scripts build && gh-pages -b gh-pages -d build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
