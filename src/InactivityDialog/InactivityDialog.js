@@ -100,12 +100,27 @@ class InactivityDialog extends Component {
     this.setState({ open: false, timerValue: 0 })
   }
 
+  wait = (ms) => {
+    const start = new Date().getTime()
+    let end = start
+    while (end < start + ms) {
+      end = new Date().getTime()
+    }
+  }
+
   changeTimerClock = () => {
     const presentValue = this.state.timerValue
+    if (presentValue === 60) {
+      // Don't panic .. this is just for testing purposes
+      this.t1 = window.performance.now()
+      this.wait(5000)
+    }
     if (presentValue > 0) {
       this.setState({ timerValue: presentValue - 1 })
     } else {
       this.handleSubmit()
+      console.log('I should take 60 odd seconds ... but some stoopid JS on main thread blocked me')
+      console.log(`As a result I took ${(window.performance.now() - this.t1)} ms`)
     }
   }
 
