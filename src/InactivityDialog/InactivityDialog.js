@@ -3,6 +3,7 @@ import { func, number, string, node, object } from 'prop-types'
 import LockOpen from 'material-ui/svg-icons/action/lock-open'
 import LockOutline from 'material-ui/svg-icons/action/lock-outline'
 import InactivityDialogView from './InactivityDialog.view'
+import debounce from './limit'
 
 const DEFAULT_TIMEOUT = 3 * 60 * 1000 // 3 minutes of inactivity before the dialog opens up
 
@@ -72,14 +73,23 @@ class InactivityDialog extends Component {
   }
 
   setKeyboardAndMouseEventListeners() {
-    window.addEventListener('keypress', this.restartTimer)
-    window.addEventListener('mousemove', this.restartTimer)
+    // Debounce the restartTimer as it'll turn out to be an expensive operation when used with
+    // other JS code.
+    this.debouncedRestartTimer = debounce(this.restartTimer, 250)
+    window.addEventListener('keypress', this.debouncedRestartTimer)
+    window.addEventListener('mousemove', this.debouncedRestartTimer)
   }
 
   clearKeyboardAndMouseEventListeners() {
-    window.removeEventListener('keypress', this.restartTimer)
-    window.removeEventListener('mousemove', this.restartTimer)
+    window.removeEventListener('keypress', this.debouncedRestartTimer)
+    window.removeEventListener('mousemove', this.debouncedRestartTimer)
   }
+
+  /**
+   * A default noop for the debounced restart timer function
+   * so that we don't break shit
+   */
+  debouncedRestartTimer = () => {}
 
   restartTimer = () => {
     if (!this.state.open) {
@@ -91,7 +101,7 @@ class InactivityDialog extends Component {
   openInactivityDialog = () => {
     this.clearKeyboardAndMouseEventListeners()
     this.props.beforeInactivityDialogOpen()
-    this.setState({ open: true, timerValue: this.props.autoUnlockTimeout })
+    this.setState({ open: true })
     this.intervalId = window.setInterval(this.changeTimerClock, DEFAULT_TIMER_CHANGE_TIMEOUT)
   }
 
